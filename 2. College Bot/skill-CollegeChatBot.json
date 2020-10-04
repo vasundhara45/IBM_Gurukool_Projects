@@ -1,0 +1,848 @@
+{
+  "intents": [
+    {
+      "intent": "CollegeEnquiry",
+      "examples": [
+        {
+          "text": "Do you have hostel facility?"
+        },
+        {
+          "text": "How is the hostel facility"
+        },
+        {
+          "text": "How many departments are there in this college?"
+        },
+        {
+          "text": "how many faculty members are there?"
+        },
+        {
+          "text": "How many seats are there for each department?"
+        },
+        {
+          "text": "I want to know about admissions in the college"
+        },
+        {
+          "text": "Show me the roadmap of college"
+        },
+        {
+          "text": "What is the College location"
+        },
+        {
+          "text": "What is website for your college?"
+        },
+        {
+          "text": "Your college is affiliated to which university?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Greetings",
+      "examples": [
+        {
+          "text": "Good afternoon"
+        },
+        {
+          "text": "Good evening"
+        },
+        {
+          "text": "Good morning"
+        },
+        {
+          "text": "Hello!"
+        },
+        {
+          "text": "Hi"
+        },
+        {
+          "text": "Hi there"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "CollegeEnquiry",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "admission",
+          "synonyms": [
+            "admissions",
+            "entry"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "departments",
+          "synonyms": [
+            "colleges",
+            "faculties",
+            "specialties"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "directions",
+          "synonyms": [
+            "direction",
+            "map",
+            "paths",
+            "roadmap",
+            "ways"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "faculty members",
+          "synonyms": [
+            "employees",
+            "faculty",
+            "teachers"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "hostel",
+          "synonyms": [
+            "cafeteria",
+            "canteen",
+            "hostels",
+            "lodging"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "library",
+          "synonyms": [
+            "gallery",
+            "hall",
+            "librarian",
+            "libraries"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "location",
+          "synonyms": [
+            "area",
+            "locations"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "other colleges",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "seats",
+          "synonyms": [
+            "seat"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "university",
+          "synonyms": [
+            "college"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "website",
+          "synonyms": [
+            "app",
+            "facebook",
+            "homepage",
+            "online",
+            "webpage",
+            "websites",
+            "youtube"
+          ]
+        }
+      ],
+      "fuzzy_match": false
+    },
+    {
+      "entity": "departments",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Chemical Engineering",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Civil Engineering",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Computer Engineering",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "EC Engineering",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "EL Engineering",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "email",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "email",
+          "patterns": [
+            "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "Greetings",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Good Afternoon",
+          "synonyms": [
+            "ga"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Good Evening",
+          "synonyms": [
+            "ge"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Good Morning",
+          "synonyms": [
+            "gm"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_5_1601636777679",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "email",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thank you for email ID $email"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "context": {
+        "email": "@email.literal"
+      },
+      "conditions": "@email",
+      "dialog_node": "node_2_1601713227335"
+    },
+    {
+      "type": "standard",
+      "title": "Greetings",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Greetings || @Greetings",
+      "dialog_node": "node_4_1601634439594",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Departments",
+      "parent": "node_5_1601636777679",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "@departments",
+      "dialog_node": "node_4_1601647427005"
+    },
+    {
+      "type": "standard",
+      "title": "CollegeEnquiry",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#CollegeEnquiry || @CollegeEnquiry",
+      "digress_in": "returns",
+      "dialog_node": "node_5_1601636777679",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_4_1601634439594"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "There are 120 seats in Computer Engineering"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "There are  60 seats in other Engineering branches"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_5_1601636777679",
+      "conditions": "@CollegeEnquiry:seats",
+      "dialog_node": "response_10_1601637117764",
+      "previous_sibling": "response_4_1601636811986"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The Department of Electronics & Communication was established in the year 1995. At present the Department is offering Undergraduate Program in the field of Electronics and Communication as well as Post Graduate program in the field of Communication Systems. The departmental facilities including latest laboratory equipment's, communication kits and modules, fibre optic kits, microwave bench etc. enabled the department to be a front-runner amongst Institutes offering courses in Electronics and Communication. "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1601647427005",
+      "conditions": "@departments:(EC Engineering)",
+      "dialog_node": "response_10_1601647555990",
+      "previous_sibling": "response_9_1601647532153"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The Department firmly believes that discipline is the strong pillar of academics. Civil engineering has scope such wide, that it touches almost all aspects of live. A Civil engineer, therefore, is subjected to more challenging problems than anyone else. Civil engineer faces the challenge of creating a structure from zero, and generally he is first person standing in front of problems. Shri Hitendrabhai Dullabhbhai Patel(Koli Patel) is the main donor of the department. CED offers a full time, 4 year (08 semesters) program giving the degree in Civil Engineering (B. E. Civil) of Group-1 with intake of 60 students with 03 in TFW quota. "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1601647427005",
+      "conditions": "@departments:(Civil Engineering)",
+      "dialog_node": "response_1_1601647494711",
+      "previous_sibling": "response_2_1601647466600"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello user"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1601634439594",
+      "conditions": "anything_else",
+      "dialog_node": "response_2_1601634685324",
+      "previous_sibling": "response_9_1601634582252"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Out college ranks #1 in South Zone of Surat, Gujarat"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_5_1601636777679",
+      "conditions": "@CollegeEnquiry:(other colleges)",
+      "dialog_node": "response_2_1601646998774",
+      "previous_sibling": "response_6_1601638233400"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The Department of Computer Engineering offers programs in B.E.(Computer) since 1995. Initially the intake was 60. With the inception of the same course in the second shift in 2013, the total intake is now 120. The Department of Computer Engineering also offers PG course with the specialization in 'Computer Engineering'. The course commenced in the year 2012 with intake of 18 has been increased to 24 in the year 2018. Both these programs are approved by Gujarat Technological University, Chandkheda, Gandhinagar and AICTE."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1601647427005",
+      "conditions": "@departments:(Computer Engineering)",
+      "dialog_node": "response_2_1601647466600"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good Afternoon"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1601634439594",
+      "conditions": "@Greetings:(Good Afternoon)",
+      "dialog_node": "response_3_1601634562053",
+      "previous_sibling": "response_4_1601634537275"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "SCET library is well equipped with books of all discipline, back volumes and current international and national journals. College library functions under the open access system having more than 59372 books. A good number of quality National/International journals and magazines are being subscribed in the library in hard bound form and/or online."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_5_1601636777679",
+      "conditions": "@CollegeEnquiry:library",
+      "dialog_node": "response_3_1601637981693",
+      "previous_sibling": "response_5_1601637956744"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good Morning!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1601634439594",
+      "conditions": "@Greetings:(Good Morning)",
+      "dialog_node": "response_4_1601634537275"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "List of Department",
+            "options": [
+              {
+                "label": "Computer Engineering",
+                "value": {
+                  "input": {
+                    "text": "Computer Engineering"
+                  }
+                }
+              },
+              {
+                "label": "Civil Engineering",
+                "value": {
+                  "input": {
+                    "text": "Civil Engineering"
+                  }
+                }
+              },
+              {
+                "label": "EC Engineering",
+                "value": {
+                  "input": {
+                    "text": "EC Engineering"
+                  }
+                }
+              },
+              {
+                "label": "EL Engineering",
+                "value": {
+                  "input": {
+                    "text": "EL Engineering"
+                  }
+                }
+              },
+              {
+                "label": "Chemical Engineering",
+                "value": {
+                  "input": {
+                    "text": "Chemical Engineering"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_5_1601636777679",
+      "conditions": "@CollegeEnquiry:departments",
+      "dialog_node": "response_4_1601636811986",
+      "previous_sibling": "node_4_1601647427005"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "source": "https://i.ibb.co/T2kT1Bg/01-SCET-Ground-Floor-Plan-With-Room-Number-22-05-2018.jpg",
+            "response_type": "image"
+          }
+        ]
+      },
+      "parent": "node_5_1601636777679",
+      "conditions": "@CollegeEnquiry:directions",
+      "dialog_node": "response_4_1601638026871",
+      "previous_sibling": "response_3_1601637981693"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Please go to <a href=\"www.scet.ac.in\" >www.scet.ac.in</a>"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_5_1601636777679",
+      "conditions": "@CollegeEnquiry:website",
+      "dialog_node": "response_5_1601637956744",
+      "previous_sibling": "response_6_1601637335929"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Highly skilled with minimum qualification of M.E and highest qualification of Ph.D. in specific branch. Every department maintains ratio of  1) Professors 2)Associate Professors 3)Assistant Professors "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_5_1601636777679",
+      "conditions": "@CollegeEnquiry:(faculty members)",
+      "dialog_node": "response_6_1601637335929",
+      "previous_sibling": "response_10_1601637117764"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Affiliated to GTU at Ahmedababd"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_5_1601636777679",
+      "conditions": "@CollegeEnquiry:university",
+      "dialog_node": "response_6_1601638233400",
+      "previous_sibling": "response_4_1601638026871"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "My information is limited! For more information email us to mail.scet.ac.in"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_5_1601636777679",
+      "conditions": "anything_else",
+      "dialog_node": "response_6_1601646794304",
+      "previous_sibling": "response_7_1601710712115"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Department of Electrical Engineering focuses on imparting education by laying equal emphasis on theoretical as well as practical issues of the profession. The department has competent and well-qualified teachers trained to match the skill and expertise required for UG and PG courses. The teaching staff, having a blend of rich academic and industrial experience is also actively involved in the research activities. "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1601647427005",
+      "conditions": "@departments:(EL Engineering)",
+      "dialog_node": "response_6_1601647608341",
+      "previous_sibling": "response_10_1601647555990"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Sarvajanik College of Engineering and Technology,Dr. R.K. Desai Marg, Opp. Mission Hospital, Athwalines, Surat – 395001 Gujarat, India"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_5_1601636777679",
+      "conditions": "@CollegeEnquiry:location",
+      "dialog_node": "response_7_1601708477968",
+      "previous_sibling": "response_9_1601704390060"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "P. T. Science Boys Hostel, M.T.B. College Campus, Athwalines, Surat\t150 1800 /- (Refundable)\t7520 /- 1100 /-"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "Sheth R.V.K.K.P. Girls Hostel Opp, Umra Police chowki, Athwalines, Surat\t50\n3000 /- (Refundable)\t9520 /-\n1000 /-"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_5_1601636777679",
+      "conditions": "@CollegeEnquiry:hostel",
+      "dialog_node": "response_7_1601710712115",
+      "previous_sibling": "response_7_1601708477968"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good Evening"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1601634439594",
+      "conditions": "@Greetings:(Good Evening)",
+      "dialog_node": "response_9_1601634582252",
+      "previous_sibling": "response_3_1601634562053"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The mission statement of Chemical Engineering Department is “To be a Center of Excellence in Chemical Engineering Education which is Industry Relevant, Globally Competitive and Socially Sound”. Department was started from the very first year of the inception of Institute in 1995. Chemical Engineering Department of SCET was accredited by NBA in 2006. The department zealously strives to provide students, the exposure to industrial environment by way of Industrial training, expert lectures and Plant visits. Seminars and workshops are organized frequently to hone their technical and soft skills. The students undergo an extensive course work and extensive laboratory practice in all conventional and advanced areas of Chemical Engineering."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1601647427005",
+      "conditions": "@departments:(Chemical Engineering)",
+      "dialog_node": "response_9_1601647532153",
+      "previous_sibling": "response_1_1601647494711"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Eligibility for Admission:  (1) For the purpose of admission, a candidate shall have passed the Qualifying Examination with minimum eligibility criteria of percentage of marks in subjects prescribed by AICTE from time to time from,  (i) the Gujarat Board; or  (ii) the Central Board of Secondary Education:  Provided that,  (a) the school in which the candidate has studied, shall have been located in the State of Gujarat; or  (b) the school in which the candidate has studied, shall have been located in the Union Territories of Daman and Diu or Dadra and Nagar Haveli and whose parents are of Gujarat origin; or  (iii) the Council of Indian School Certificate Examination, New Delhi:  Provided that,  (a) the school in which the candidate has studied, shall have been located in the State of Gujarat; or  (b) the school in which the candidate has studied, shall have been located in the Union Territories of Daman and Diu or Dadra and Nagar Haveli and whose parents are of Gujarat origin; or  (iv) the National Institute of Open Schooling:  Provided that,  (a) the study Center/school in which the candidate has studied, shall have been located in the State of Gujarat; or  (b) the study Center/school in which the candidate has studied, shall have been located in the Union Territories of Daman and Diu or Dadra and Nagar Haveli and whose parents are of Gujarat origin; or  (v) the International School Board:  Provided that,  (a) the study Center/school in which the candidate has studied, shall have been located in the State of Gujarat; or  (b) the study Center/school in which the candidate has studied, shall have been located in the Union Territories of Daman and Diu or Dadra and Nagar Haveli and whose parents are of Gujarat origin; and  (vi) have appeared in GUJCET conducted in the corresponding academic year.  (2) A candidate whose parents are of Gujarat origin and are serving out of the Gujarat in the service of Central Government or other State Government, Armed Forces, Boards or Corporations owned or controlled by the Central Government or other State Government or any nationalized bank and who has passed the qualifying examination from the State where parents are serving and has appeared in the GUJCET conducted in the corresponding academic year, shall be eligible for admission and his candidature shall be included in the merit list prepared in accordance with the provisions of rule 11.  (3) A candidate who has passed the Qualifying Examination from any other State and,  (i) has appeared in GUJCET conducted in the corresponding academic year; and  (ii) whose parents are serving in the category of services as shown below and who are transferred from other States to Gujarat and have resumed their duties in the place where they are transferred in the state of Gujarat at the time of registration for admission, shall be eligible for admission and his candidature shall be included in the merit list prepared in accordance with the provision of Rule 11."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_5_1601636777679",
+      "conditions": "@CollegeEnquiry:admission",
+      "dialog_node": "response_9_1601704390060",
+      "previous_sibling": "response_2_1601646998774"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello I'm a College Chat Bot,  you can  ask me about admission enquiries, department information, Places in the college to go and visit. How may I help you? For more information provide us with your email ID."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "CollegeChatBot",
+  "language": "en",
+  "description": ""
+}
